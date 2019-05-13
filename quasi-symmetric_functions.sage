@@ -20,14 +20,11 @@ def QuasiSymmetricFunctions(base=QQ):
         DD1 = defaultdict(lambda:0,{(s[0],)+x:D1[x] for x in D1})
         DD2 = defaultdict(lambda:0,{(t[0],)+x:D2[x] for x in D2})
         DD3 = defaultdict(lambda:0,{(s[0]+t[0],)+x:D3[x] for x in D3})
-        for D in [DD1,DD2]:
+        for D in [DD2,DD3]:
             for x in D:
-                DD1[xx] += D[x]
-                if x in DD1:
-                    DD1[x] += D[x]
-                else:
-                    DD1[x] = D[x]
-        return D
+                DD1[x] += D[x]
+        return DD1
+    
     order = lambda s:(sum(s),)+s
     def rep(s,brace=False):
         if s == unit:
